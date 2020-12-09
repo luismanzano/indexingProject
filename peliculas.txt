@@ -1,7 +1,7 @@
 codigo
 1
 titulo
-iron man
+Thor
 socio
 343
 alquiler
@@ -10,9 +10,81 @@ alquiler
 codigo
 2
 titulo
-youtube
+Thor: The dark world
 socio
 9393
 alquiler
-883
+12
+////////////////
+codigo
+3
+titulo
+Thor: Ragnarok
+socio
+9393
+alquiler
+12
+////////////////
+codigo
+4
+titulo
+V for Vendetta
+socio
+9393
+alquiler
+12
+////////////////
+codigo
+5
+titulo
+Tyler Rake: Extraction
+socio
+9393
+alquiler
+12
+////////////////
+codigo
+6
+titulo
+Busqueda Implacable
+socio
+9393
+alquiler
+12
+////////////////
+codigo
+7
+titulo
+Fragmentado
+socio
+9393
+alquiler
+12
+////////////////
+codigo
+8
+titulo
+American Pie
+socio
+9393
+alquiler
+12
+////////////////
+codigo
+9
+titulo
+Divergente
+socio
+9393
+alquiler
+12
+////////////////
+codigo
+10
+titulo
+Jackass
+socio
+7656
+alquiler
+99999999999
 ////////////////

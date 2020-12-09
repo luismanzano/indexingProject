@@ -150,15 +150,57 @@ def ordenarIndice():
 
 #FUNCION QUE ANADE LA PELICULA
 def anadirPelicula():
-    print("CODIGO")
-    codigo = input()
-    codigo = int(codigo)
-    print("TITULO")
-    titulo = input()
-    print("COSTO ALQUILER")
-    alquiler = input()
-    print("SOCIO")
-    socio = input()
+
+    while True:
+        try:
+            print("CODIGO")
+            codigo = input()
+            if len(codigo)-1 > 4:
+                raise Exception("Sorry, no numbers below zero")
+            else:
+                codigo = int(codigo)
+                break
+        except:
+            print("Solo se aceptan hasta 5 digitos en el codigo")
+
+    while True:
+        try:
+            print("TITULO")
+            titulo = input()
+            if len(titulo)-1 > 29:
+                raise Exception("Sorry, no numbers below zero")
+            else:
+                break
+        except:
+            print("Solo se aceptan hasta 30 caracteres en el titulo")
+
+
+    while True:
+        try:
+            print("COSTO DEL ALQUILER")
+            alquiler = input()
+            if len(alquiler)-1 > 7:
+                raise Exception("Sorry, no numbers below zero")
+            else:
+                alquiler = int(alquiler)
+                break
+        except:
+            print("Solo se aceptan hasta 8 digitos en el costo del alquiler")
+
+
+
+    while True:
+        try:
+            print("SOCIO")
+            socio = input()
+            if len(socio)-1 > 7:
+                raise Exception("Sorry, no numbers below zero")
+            else:
+                socio = int(socio)
+                break
+        except:
+            print("Solo se aceptan hasta 8 digitos en el numero de socio")
+
 
     pelicula = Pelicula(codigo, titulo, alquiler, socio)
     inventario.append(pelicula)
@@ -191,6 +233,38 @@ def guardarDisco():
         file.write("////////////////\n")
     file.close()
 
+def addPelicula(codigo, titulo, alquiler, socio, existe, alquilada):
+    pelicula = Pelicula(codigo,titulo, alquiler, socio)
+    pelicula.alquilada = alquilada
+    inventario.append(pelicula)
+    registro = Registro(len(inventario)-1, pelicula.codigo, True)
+    indice.append(registro)
+    ordenarIndice()
+
+
+def reindexar():
+    print("Reindexando.......")
+    auxiliar = []
+    #Eliminamos del arreglo inventario (que seria la db con todos los datos)
+    for i in range(len(inventario)-1):
+        if inventario[i].existe == False:
+            inventario.pop(i)
+        else:
+            continue
+    global indice 
+    indice = []
+
+    for i in range(len(inventario)):
+        pelicula = inventario[i]
+        registro = Registro(i, pelicula.codigo, True)
+        indice.append(registro)
+    ordenarIndice()
+
+
+    
+
+
+
 def leerDisco():
     peliculas = len(inventario)
 
@@ -210,6 +284,7 @@ def leerDisco():
         if data[i] == "codigo\n":
             codigo = data[i+1]
             codigo = codigo[:-1]
+            codigo = int(codigo)
 
         elif data[i] == "titulo\n":
             titulo = data[i+1]
@@ -249,6 +324,7 @@ starter = True
 
 
 while starter == True:
+    leerDisco()
     print("Bienvenido a Peliculas Doble LL")
     print("\n 1 - AÑADIR PELICULA")
     print("\n 2 - BUSCAR PELICULA POR INDICE")
@@ -258,7 +334,7 @@ while starter == True:
     print("\n 6 - ALQUILAR PELICULA")
     print("\n 7 - DEVOLVER PELICULA")
     print("\n 8 - CARGAR DEL DISCO")
-    print("\n 9 - BUSCAR POR PALABRA")
+    print("\n 9 - REINDEXAR")
     print("\n 10 - SALIR DEL PROGRAMA")
     print("\n 11 - LISTAR LAS PELICULAS")
     option = input()
@@ -291,9 +367,12 @@ while starter == True:
         leerDisco()
 
     elif option =='9':
-        pass
+        reindexar()
 
     elif option == '10':
+        #GUARDANDO AUTOMATICAMENTE EN DISCO
+        print("Su nuevos datos han sido guardados al disco")
+        guardarDisco()
         print("Adios!")
         starter = False
 
@@ -304,5 +383,10 @@ while starter == True:
             print(pelicula.alquilada)
             print(pelicula.socio)
             print(pelicula.existe)
+
+        for x in indice:
+            print("----------------------")
+            print("CODIGO " + str(x.codigo))
+            print("INDICE " + str(x.indice))
 
 
