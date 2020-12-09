@@ -4,4 +4,5 @@ class Pelicula:
         self.titulo = titulo
         self.alquiler = alquiler
         self.socio = socio
+        self.existe = True
 

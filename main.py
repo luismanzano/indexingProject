@@ -6,12 +6,34 @@ from Registro import Registro
 inventario = []
 indice = []
 
+def eliminarPelicula():
+    print("Ingrese la pelicula que desea eliminar")
+    codigo = input()
+    codigo = int(codigo)
+    r = len(indice) - 1
+    pelicula = binarySearch(indice, 0, r, codigo)
+    print("CODIGO: " + str(pelicula.codigo))
+    print("TITULO: " + pelicula.titulo)
+    print("ALQUILER: " + pelicula.alquiler)
+    print("SOCIO: " + pelicula.socio)
+    print("EXISTE: " + str(pelicula.existe))
+    print("////////////////////////////")
+    pelicula.existe = False
+    print("CODIGO: " + str(pelicula.codigo))
+    print("TITULO: " + pelicula.titulo)
+    print("ALQUILER: " + pelicula.alquiler)
+    print("SOCIO: " + pelicula.socio)
+    print("EXISTE: " + str(pelicula.existe))
+
+    
+
 def retornarPelicula(index):
     pelicula = inventario[index]
     print("CODIGO: " + str(pelicula.codigo))
     print("TITULO: " + pelicula.titulo)
     print("ALQUILER: " + pelicula.alquiler)
     print("SOCIO: " + pelicula.socio)
+    return pelicula
 
 #BUSQUEDA BINARIA
 def binarySearch (arr, l, r, codigo): 
@@ -141,8 +163,14 @@ while starter == True:
     elif option =='2':
         buscarPelicula()
 
+    elif option =='3':
+        eliminarPelicula()
+
     elif option =='4':
         guardarDisco()
+
+    elif option =='5':
+        eliminarPelicula()
         
 
 
