@@ -5,4 +5,5 @@ class Pelicula:
         self.alquiler = alquiler
         self.socio = socio
         self.existe = True
+        self.alquilada = False
 
