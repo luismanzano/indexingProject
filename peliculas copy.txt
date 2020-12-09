@@ -88,12 +88,3 @@ socio
 alquiler
 99999999999
 ////////////////
-codigo
-11
-titulo
-Machete
-socio
-0
-alquiler
-54
-////////////////

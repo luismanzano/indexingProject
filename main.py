@@ -15,22 +15,13 @@ def eliminarPelicula():
     codigo = int(codigo)
     r = len(indice) - 1
     pelicula = binarySearch(indice, 0, r, codigo)
-    print("CODIGO: " + str(pelicula.codigo))
-    print("TITULO: " + pelicula.titulo)
-    print("ALQUILER: " + pelicula.alquiler)
-    print("SOCIO: " + pelicula.socio)
-    print("EXISTE: " + str(pelicula.existe))
     print("////////////////////////////")
     pelicula.existe = False
-    print("CODIGO: " + str(pelicula.codigo))
-    print("TITULO: " + pelicula.titulo)
-    print("ALQUILER: " + pelicula.alquiler)
-    print("SOCIO: " + pelicula.socio)
-    print("EXISTE: " + str(pelicula.existe))
+    print("La pelicula: " + pelicula.titulo + " se ha eliminado logicamente")
 
 
 def alquilarPelicula():
-    print("Ingrese el indice de la pelicula que desea agregar")
+    print("Ingrese el indice de la pelicula que desea alquilar")
     codigo = input()
     codigo = int(codigo)
     r = len(indice) - 1
@@ -39,6 +30,7 @@ def alquilarPelicula():
         print("Esta pelicula ya esta alquilada")
 
     else:
+        pelicula.alquilada = True
         print("Ingrese su numero de socio")
         socio = input()
         socio = int(socio)
@@ -46,7 +38,7 @@ def alquilarPelicula():
         print("CODIGO: " + str(pelicula.codigo))
         print("TITULO: " + pelicula.titulo)
         print("ALQUILER: " + pelicula.alquiler)
-        print("SOCIO: " + pelicula.socio)
+        print("SOCIO: " + str(pelicula.socio))
         print("EXISTE: " + str(pelicula.existe))
 
 
@@ -66,7 +58,7 @@ def devolverPelicula():
         print("CODIGO: " + str(pelicula.codigo))
         print("TITULO: " + pelicula.titulo)
         print("ALQUILER: " + pelicula.alquiler)
-        print("SOCIO: " + pelicula.socio)
+        print("SOCIO: " + str(pelicula.socio))
         print("EXISTE: " + str(pelicula.existe))
 
     
@@ -76,10 +68,12 @@ def retornarPelicula(index):
     if pelicula.existe == False:
         print("La pelicula no se encuentra disponible (eliminada logicamente)")
     else:
+        print("-------------------------")
+        print("LA PELICULA SELECCIONADA ES:")
         print("CODIGO: " + str(pelicula.codigo))
         print("TITULO: " + pelicula.titulo)
-        print("ALQUILER: " + pelicula.alquiler)
-        print("SOCIO: " + pelicula.socio)
+        print("ALQUILER: " + str(pelicula.alquiler))
+        print("ALQUILADA: " + str(pelicula.alquilada))
     return pelicula
 
 #BUSQUEDA BINARIA
@@ -93,7 +87,7 @@ def binarySearch (arr, l, r, codigo):
         # If element is present at the middle itself 
         if arr[mid].codigo == codigo: 
             print("Encontrado")
-            print(arr[mid].codigo)
+            #print(arr[mid].codigo)
             return retornarPelicula(arr[mid].indice)
           
         # If element is smaller than mid, then it  
@@ -115,14 +109,13 @@ def binarySearch (arr, l, r, codigo):
 
 def retornarPalabra(index, option):
     palabra = diccionario[index]
-    print(palabra.texto)
 
     if option == True:
         for codigo in palabra.codigos:
-            print("BUSCANDO LA PELICULA POR PALABRA")
+            #print("BUSCANDO LA PELICULA POR PALABRA")
             r = len(indice) - 1
             binarySearch(indice, 0, r, codigo)
-            print("Volviendo a la interfaz")
+            #print("Volviendo a la interfaz")
     else:
         diccionario[index].codigos.append(option)
 
@@ -137,8 +130,8 @@ def binarySearchPalabra (arr, l, r, codigo, option):
   
         # If element is present at the middle itself 
         if arr[mid].codigo == codigo: 
-            print("Encontrado...")
-            print(arr[mid].codigo)
+            #print("Encontrado...")
+            #print(arr[mid].codigo)
             return retornarPalabra(arr[mid].indice, option)
           
         # If element is smaller than mid, then it  
@@ -165,7 +158,7 @@ def buscarPelicula():
     codigo = int(codigo)
     r = len(indice) - 1
     binarySearch(indice, 0, r, codigo)
-    print("Volviendo a la interfaz")
+    #print("EEREQUERO")
 
 
 #FUNCION QUE ORDENA EL INDICE 
@@ -320,7 +313,7 @@ def guardarDisco():
         file.write("\n")
         file.write("alquiler\n")
         file.write(str(pelicula.alquiler))
-        file.write("\n")
+        #file.write("\n")
         file.write("////////////////\n")
     file.close()
 
@@ -427,72 +420,71 @@ def buscarNombre(palabra, option):
 starter = True
 
 
-while starter == True:
+if __name__ == "__main__":
     leerDisco()
-    print("Bienvenido a Peliculas Doble LL")
-    print("\n 1 - AÑADIR PELICULA")
-    print("\n 2 - BUSCAR PELICULA POR INDICE")
-    print("\n 3 - BUSCAR PELICULA POR NOMBRE")
-    print("\n 4 - GUARDAR AL DISCO")
-    print("\n 5 - ELIMINAR PELICULA (logicamente)")
-    print("\n 6 - ALQUILAR PELICULA")
-    print("\n 7 - DEVOLVER PELICULA")
-    print("\n 8 - CARGAR DEL DISCO")
-    print("\n 9 - REINDEXAR")
-    print("\n 10 - SALIR DEL PROGRAMA")
-    print("\n 11 - LISTAR LAS PELICULAS")
-    option = input()
-    # print(option)
+
+    while starter == True:
+        
+        print("Bienvenido a Peliculas Doble LL")
+        print("\n 1 - AÑADIR PELICULA   2 - BUSCAR PELICULA POR INDICE   3 - BUSCAR PELICULA POR NOMBRE")
+        print("\n 4 - GUARDAR AL DISCO   5 - ELIMINAR PELICULA (logicamente)   6 - ALQUILAR PELICULA")
+        print("\n 7 - DEVOLVER PELICULA   8 - CARGAR DEL DISCO   9 - REINDEXAR")
+        print("\n 10 - SALIR DEL PROGRAMA   11 - LISTAR LAS PELICULAS")
+        option = input()
+        # print(option)
 
 
 
-    if option == '1':
-        anadirPelicula()
+        if option == '1':
+            anadirPelicula()
 
-    elif option =='2':
-        buscarPelicula()
+        elif option =='2':
+            buscarPelicula()
 
-    elif option =='3':
-        print("Ingrese la palabra que desea buscar")
-        nombre = input()
-        buscarNombre(nombre, True)
+        elif option =='3':
+            print("Ingrese la palabra que desea buscar")
+            nombre = input()
+            buscarNombre(nombre, True)
 
-    elif option =='4':
-        guardarDisco()
+        elif option =='4':
+            guardarDisco()
 
-    elif option =='5':
-        eliminarPelicula()
-    
-    elif option =='6':
-        alquilarPelicula()
+        elif option =='5':
+            eliminarPelicula()
+        
+        elif option =='6':
+            alquilarPelicula()
 
-    elif option =='7':
-        devolverPelicula()
+        elif option =='7':
+            devolverPelicula()
 
-    elif option =='8':
-        leerDisco()
+        elif option =='8':
+            leerDisco()
 
-    elif option =='9':
-        reindexar()
+        elif option =='9':
+            reindexar()
 
-    elif option == '10':
-        #GUARDANDO AUTOMATICAMENTE EN DISCO
-        print("Su nuevos datos han sido guardados al disco")
-        guardarDisco()
-        print("Adios!")
-        starter = False
+        elif option == '10':
+            #GUARDANDO AUTOMATICAMENTE EN DISCO
+            print("Su nuevos datos han sido guardados al disco")
+            reindexar()
+            guardarDisco()
+            print("Adios!")
+            starter = False
 
-    elif option =='11':
-        for pelicula in inventario:
-            print(pelicula.titulo)
-            print(pelicula.codigo)
-            print(pelicula.alquilada)
-            print(pelicula.socio)
-            print(pelicula.existe)
+        elif option =='11':
+            for pelicula in inventario:
+                print(pelicula.titulo)
+                print(pelicula.codigo)
+                print(pelicula.alquilada)
+                print(pelicula.socio)
+                print(pelicula.existe)
 
-        for x in indice:
-            print("----------------------")
-            print("CODIGO " + str(x.codigo))
-            print("INDICE " + str(x.indice))
+            for x in indice:
+                print("----------------------")
+                print("CODIGO " + str(x.codigo))
+                print("INDICE " + str(x.indice))
+
+            print("FINNNNNNNNNNNNNNN")
 
 
