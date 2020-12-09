@@ -89,11 +89,10 @@ alquiler
 99999999999
 ////////////////
 codigo
-11
+12
 titulo
-Machete
+El frío 
 socio
-0
+3
 alquiler
-54
-////////////////
+56////////////////

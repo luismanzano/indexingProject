@@ -37,7 +37,7 @@ def alquilarPelicula():
         pelicula.socio = socio
         print("CODIGO: " + str(pelicula.codigo))
         print("TITULO: " + pelicula.titulo)
-        print("ALQUILER: " + pelicula.alquiler)
+        print("ALQUILER: " + str(pelicula.alquiler))
         print("SOCIO: " + str(pelicula.socio))
         print("EXISTE: " + str(pelicula.existe))
 
@@ -57,7 +57,7 @@ def devolverPelicula():
         pelicula.socio = 00000
         print("CODIGO: " + str(pelicula.codigo))
         print("TITULO: " + pelicula.titulo)
-        print("ALQUILER: " + pelicula.alquiler)
+        print("ALQUILER: " + str(pelicula.alquiler))
         print("SOCIO: " + str(pelicula.socio))
         print("EXISTE: " + str(pelicula.existe))
 
@@ -466,9 +466,9 @@ if __name__ == "__main__":
 
         elif option == '10':
             #GUARDANDO AUTOMATICAMENTE EN DISCO
-            print("Su nuevos datos han sido guardados al disco")
             reindexar()
             guardarDisco()
+            print("Su nuevos datos han sido guardados al disco")
             print("Adios!")
             starter = False
 
