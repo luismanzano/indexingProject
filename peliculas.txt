@@ -10,7 +10,7 @@ alquiler
 codigo
 2
 titulo
-Thor: The dark world
+Thor The dark world
 socio
 9393
 alquiler
@@ -19,7 +19,7 @@ alquiler
 codigo
 3
 titulo
-Thor: Ragnarok
+Thor Ragnarok
 socio
 9393
 alquiler
@@ -37,7 +37,7 @@ alquiler
 codigo
 5
 titulo
-Tyler Rake: Extraction
+Tyler Rake Extraction
 socio
 9393
 alquiler

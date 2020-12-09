@@ -2,9 +2,12 @@ import math
 import random 
 from Pelicula import Pelicula
 from Registro import Registro
+from Palabra import Palabra
 
 inventario = []
 indice = []
+diccionario = []
+indicePalabras = []
 
 def eliminarPelicula():
     print("Ingrese la pelicula que desea eliminar")
@@ -96,18 +99,63 @@ def binarySearch (arr, l, r, codigo):
         # If element is smaller than mid, then it  
         # can only be present in left subarray 
         elif arr[mid].codigo > codigo: 
-            print("buscando abajo")
+            #print("buscando abajo")
             return binarySearch(arr, l, mid-1, codigo) 
   
         # Else the element can only be present  
         # in right subarray 
         else: 
-            print("buscando arriba")
+            #print("buscando arriba")
             return binarySearch(arr, mid + 1, r, codigo) 
   
     else: 
         # Element is not present in the array 
         return "El elemento no existe"
+
+
+def retornarPalabra(index, option):
+    palabra = diccionario[index]
+    print(palabra.texto)
+
+    if option == True:
+        for codigo in palabra.codigos:
+            print("BUSCANDO LA PELICULA POR PALABRA")
+            r = len(indice) - 1
+            binarySearch(indice, 0, r, codigo)
+            print("Volviendo a la interfaz")
+    else:
+        diccionario[index].codigos.append(option)
+
+
+
+def binarySearchPalabra (arr, l, r, codigo, option): 
+  
+    # Check base case 
+    if r >= l: 
+  
+        mid = l + (r - l) // 2
+  
+        # If element is present at the middle itself 
+        if arr[mid].codigo == codigo: 
+            print("Encontrado...")
+            print(arr[mid].codigo)
+            return retornarPalabra(arr[mid].indice, option)
+          
+        # If element is smaller than mid, then it  
+        # can only be present in left subarray 
+        elif arr[mid].codigo > codigo: 
+            return binarySearchPalabra(arr, l, mid-1, codigo, option) 
+  
+        # Else the element can only be present  
+        # in right subarray 
+        else: 
+            return binarySearchPalabra(arr, mid + 1, r, codigo, option) 
+  
+    else: 
+        # Element is not present in the array 
+        print("La palabra que busca no existe")
+        return False
+
   
 
 
@@ -121,7 +169,7 @@ def buscarPelicula():
 
 
 #FUNCION QUE ORDENA EL INDICE 
-def ordenarIndice():
+def ordenarIndice(indice):
     if len(indice) == 0:
         return
     
@@ -147,6 +195,48 @@ def ordenarIndice():
         
 
 #FIN DEL ORDENAR DEL INDICE
+
+#METODO PARA EL INDICE DE LAS PALABRAS 
+def codigoPalabra(textos, codigoPelicula):
+    texto = textos + " "
+    text2 = [char for char in texto]
+    # for cha in text2:
+    #     print("cha "+cha)
+    text = ""
+    for cha in text2:
+        if cha == " ":
+            # print("CHA2 "+cha)
+            # print("la palabra "+text)
+            valores = [ord(caracter) for caracter in text]
+            total = 0
+            for i in range(len(valores)):
+                total += (valores[i]*(i+1))
+            #VEMOS SI LA PALABRA YA EXISTE
+            r = len(indicePalabras) - 1    
+            codicional = binarySearchPalabra(indicePalabras, 0, r, total, codigoPelicula)
+            if codicional == False:
+                palabra = Palabra(text, total, codigoPelicula)
+                diccionario.append(palabra)
+                registro = Registro(len(diccionario)-1, palabra.valor, True)
+                indicePalabras.append(registro)
+                ordenarIndice(indicePalabras)
+                text = ""
+ 
+        else:
+            text += cha
+    # for element in diccionario:
+    #     print("palabra " + element.texto)
+    #     print("valor " + str(element.valor))
+    #     print("-------------------------")
+
+    # print("//////////////////////////")    
+    ordenarIndice(indicePalabras)
+    # for element in indicePalabras:
+    #     print("palabraIndice " + str(element.indice))
+    #     print("palabraValor " + str(element.codigo))
+#FIN DEL METODO DEL INDICE DE LAS PALABRAS
+    
+
 
 #FUNCION QUE ANADE LA PELICULA
 def anadirPelicula():
@@ -203,6 +293,7 @@ def anadirPelicula():
 
 
     pelicula = Pelicula(codigo, titulo, alquiler, socio)
+    codigoPalabra(pelicula.titulo, pelicula.codigo)
     inventario.append(pelicula)
 
     registro = Registro(len(inventario)-1, pelicula.codigo, True)
@@ -211,7 +302,7 @@ def anadirPelicula():
     index = len(inventario)
     print("LEN DEL INVENTARIO " + str(index))
 
-    ordenarIndice()
+    ordenarIndice(indice)
 #FIN DEL ANADIR PELICULAS 
 
 def guardarDisco():
@@ -239,12 +330,11 @@ def addPelicula(codigo, titulo, alquiler, socio, existe, alquilada):
     inventario.append(pelicula)
     registro = Registro(len(inventario)-1, pelicula.codigo, True)
     indice.append(registro)
-    ordenarIndice()
+    ordenarIndice(indice)
 
 
 def reindexar():
     print("Reindexando.......")
-    auxiliar = []
     #Eliminamos del arreglo inventario (que seria la db con todos los datos)
     for i in range(len(inventario)-1):
         if inventario[i].existe == False:
@@ -258,7 +348,8 @@ def reindexar():
         pelicula = inventario[i]
         registro = Registro(i, pelicula.codigo, True)
         indice.append(registro)
-    ordenarIndice()
+    ordenarIndice(indice)
+
 
 
     
@@ -309,14 +400,27 @@ def leerDisco():
 
             registro = Registro(len(inventario)-1, pelicula.codigo, True)
             indice.append(registro)
+            
+            codigoPalabra(pelicula.titulo, pelicula.codigo)
 
             index = len(inventario)
             # print("LEN DEL INVENTARIO " + str(index))
 
-            ordenarIndice()
+            ordenarIndice(indice)
         else:
             continue
 
+
+def buscarNombre(palabra, option):
+    valores = [ord(caracter) for caracter in palabra]
+    total = 0
+    for i in range(len(valores)):
+        total += (valores[i]*(i+1))
+    r = len(indicePalabras) - 1
+    binarySearchPalabra(indicePalabras, 0, r, total, option)
+    print("Volviendo a la interfaz")
+
+    
 
     
 
@@ -349,7 +453,9 @@ while starter == True:
         buscarPelicula()
 
     elif option =='3':
-        eliminarPelicula()
+        print("Ingrese la palabra que desea buscar")
+        nombre = input()
+        buscarNombre(nombre, True)
 
     elif option =='4':
         guardarDisco()
