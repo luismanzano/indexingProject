@@ -140,10 +140,10 @@ def ordenarIndice():
                 if indice[j].codigo > indice[j+1].codigo : 
                     indice[j], indice[j+1] = indice[j+1], indice[j] 
 
-    for x in indice:
-        print("----------------------")
-        print("CODIGO " + str(x.codigo))
-        print("INDICE " + str(x.indice))
+    # for x in indice:
+    #     print("----------------------")
+    #     print("CODIGO " + str(x.codigo))
+    #     print("INDICE " + str(x.indice))
         
 
 #FIN DEL ORDENAR DEL INDICE
@@ -311,7 +311,7 @@ def leerDisco():
             indice.append(registro)
 
             index = len(inventario)
-            print("LEN DEL INVENTARIO " + str(index))
+            # print("LEN DEL INVENTARIO " + str(index))
 
             ordenarIndice()
         else:
@@ -338,7 +338,7 @@ while starter == True:
     print("\n 10 - SALIR DEL PROGRAMA")
     print("\n 11 - LISTAR LAS PELICULAS")
     option = input()
-    print(option)
+    # print(option)
 
 
 
