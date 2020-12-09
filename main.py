@@ -313,7 +313,7 @@ def guardarDisco():
         file.write("\n")
         file.write("alquiler\n")
         file.write(str(pelicula.alquiler))
-        #file.write("\n")
+        file.write("\n")
         file.write("////////////////\n")
     file.close()
 

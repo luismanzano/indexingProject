@@ -6,6 +6,7 @@ socio
 343
 alquiler
 12
+
 ////////////////
 codigo
 2
@@ -15,6 +16,7 @@ socio
 9393
 alquiler
 12
+
 ////////////////
 codigo
 3
@@ -24,6 +26,7 @@ socio
 9393
 alquiler
 12
+
 ////////////////
 codigo
 4
@@ -33,6 +36,7 @@ socio
 9393
 alquiler
 12
+
 ////////////////
 codigo
 5
@@ -42,6 +46,7 @@ socio
 9393
 alquiler
 12
+
 ////////////////
 codigo
 6
@@ -51,6 +56,7 @@ socio
 9393
 alquiler
 12
+
 ////////////////
 codigo
 7
@@ -60,6 +66,7 @@ socio
 9393
 alquiler
 12
+
 ////////////////
 codigo
 8
@@ -69,6 +76,7 @@ socio
 9393
 alquiler
 12
+
 ////////////////
 codigo
 9
@@ -78,6 +86,7 @@ socio
 9393
 alquiler
 12
+
 ////////////////
 codigo
 10
@@ -87,12 +96,15 @@ socio
 7656
 alquiler
 99999999999
+
 ////////////////
 codigo
-12
+11
 titulo
 El frío 
 socio
-3
+63
 alquiler
-56////////////////
+56
+
+////////////////
