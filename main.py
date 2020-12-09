@@ -209,15 +209,18 @@ def leerDisco():
     for i in range(len(data)):
         if data[i] == "codigo\n":
             codigo = data[i+1]
+            codigo = codigo[:-1]
 
         elif data[i] == "titulo\n":
             titulo = data[i+1]
+            titulo = titulo[:-1]
 
         elif data[i] == "alquiler\n":
             alquiler = data[i+1]
 
         elif data[i] == "socio\n":
             socio = data[i+1]
+            socio = socio[:-1]
 
         elif data[i] == "existe\n":
             existe = data[i+1]
