@@ -422,14 +422,14 @@ starter = True
 
 if __name__ == "__main__":
     leerDisco()
-
+    print("\n\n\n\n\n\n\n\n")
+    print("Bienvenido a Peliculas Doble LL\n")
     while starter == True:
-        
-        print("Bienvenido a Peliculas Doble LL")
+        print("\nIngresa la opcion que desea ejecutar")
         print("\n 1 - AÑADIR PELICULA   2 - BUSCAR PELICULA POR INDICE   3 - BUSCAR PELICULA POR NOMBRE")
         print("\n 4 - GUARDAR AL DISCO   5 - ELIMINAR PELICULA (logicamente)   6 - ALQUILAR PELICULA")
         print("\n 7 - DEVOLVER PELICULA   8 - CARGAR DEL DISCO   9 - REINDEXAR")
-        print("\n 10 - SALIR DEL PROGRAMA   11 - LISTAR LAS PELICULAS")
+        print("\n 10 - SALIR DEL PROGRAMA   11 - LISTAR LAS PELICULAS\n")
         option = input()
         # print(option)
 
